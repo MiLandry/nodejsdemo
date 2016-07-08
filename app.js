@@ -1,11 +1,12 @@
-var http = require('http');
+var debug = require('debug')('http'),
+    http = require('http'),
+    name = 'My App';
 
-http.createServer(function(request, response) {
-	response.writeHead(200);
-	var theVar = "hardcoded var =(.";
-	theVar = process.env.FOO;
-	console.log(process);
-	response.write("Behold: a really cool ENV VAR: ." + theVar);
-	response.end();
-}).listen(8080);
-console.log('Listening on port 8080...');
+debug('booting %s', name);
+
+http.createServer(function(req, res){
+  debug(req.method + ' ' + req.url);
+  res.end('hello\n also ' +process.env.foo);
+}).listen(8080, function(){
+  debug('listening. port 8080' );
+});
