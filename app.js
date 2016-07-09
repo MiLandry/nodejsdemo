@@ -1,9 +1,17 @@
-var express = require('express');
+var express = require('express'),
+    app = express(),
+     port = 5000;
 
-var app = express();
+app.get('/', function(req, res, next){
+    res.send("sanothei " + process.env.foo);
+});
 
-var port = 5000;
+app.get('/books', function(req, res, next){
+    res.send(" da books");
+});
 
-app.listen(port);
+app.listen(port, function(err){
+    console.log("listening on port " + port);
+    
+});
 
-console.log("listening on port " + port);
