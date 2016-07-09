@@ -2,6 +2,8 @@ var express = require('express'),
     app = express(),
      port = 5000;
 
+app.use(express.static('public'));
+
 app.get('/', function(req, res, next){
     res.send("sanothei " + process.env.foo);
 });
